@@ -263,14 +263,21 @@ class GradientDescent:
                       f"Accuracy: {accuracy:.4f}")
 
             # --- Check convergence ---
-            # If cost barely changed from last epoch, stop
+            # Condition 1: cost barely changed from last epoch
             if len(self.cost_history) >= 2:
                 cost_change = abs(
                     self.cost_history[-1] - self.cost_history[-2]
                 )
-                if cost_change < 0.000001:
+                if cost_change < 0.0001:
                     if verbose:
-                        print(f"  Converged at epoch {epoch+1}")
+                        print(f"  Converged at epoch {epoch+1} (cost stable)")
+                    break
+
+            # Condition 2: accuracy has been perfect for 20 epochs
+            if len(self.accuracy_history) >= 20:
+                if all(acc == 1.0 for acc in self.accuracy_history[-20:]):
+                    if verbose:
+                        print(f"  Converged at epoch {epoch+1} (perfect accuracy)")
                     break
 
 
