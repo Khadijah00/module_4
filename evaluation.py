@@ -6,7 +6,8 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-
+import matplotlib
+matplotlib.rcParams['figure.dpi'] = 100
 
 def print_detailed_results(ova_classifier, X_train, y_train,
                             X_test, y_test, class_names, title):
@@ -72,7 +73,7 @@ def plot_accuracy_curves(ova_classifiers, titles, class_names,
 
     fig, axes = plt.subplots(
         num_experiments, num_classes,
-        figsize=(15, 4 * num_experiments)
+        figsize=(13, 3.5 * num_experiments)
     )
 
     # Handle case of single experiment (axes not nested)
@@ -125,7 +126,7 @@ def plot_cost_curves(ova_gd_classifiers, titles, class_names,
 
     fig, axes = plt.subplots(
         num_experiments, 3,
-        figsize=(15, 4 * num_experiments)
+        figsize=(13, 3.5 * num_experiments)
     )
 
     if num_experiments == 1:
